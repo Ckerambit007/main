@@ -3,7 +3,7 @@
 #include <cmath>
 using namespace std;
 
-int task3()
+int main()
 {
     double x, y, z;
     bool p, q, v;
