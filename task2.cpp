@@ -3,7 +3,7 @@
 #include <windows.h>
 using namespace std;
 
-int task2()
+int main()
 {
 	SetConsoleCP(CP_UTF8);
 	SetConsoleOutputCP(CP_UTF8);
