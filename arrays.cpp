@@ -24,17 +24,21 @@ int main() {
 		for (int j = 0; j < m; j++) {
 			if (A[i] == B[j]) {
 				find = true;
-				for (int l = 0; l < k; l++) {
-					if (C[l] == A[i]) {
-						find = false;
-						break;
-					}
+				break;
 				}
 			}
-		}
 		if (find) {
-			C[k] = A[i];
-			k++;
+			bool UniqueInC = true;
+			for (int l = 0; l < k; l++) {
+				if (C[l] == A[i]) {
+					UniqueInC = false;
+					break;
+				}
+			}
+			if (UniqueInC) {
+				C[k] = A[i];
+				k++;
+			}
 		}
 	}
 	cout << "\nC: ";
