@@ -3,7 +3,7 @@
 #include <cmath>
 using namespace std;
 
-int task4()
+int main()
 {
 	double x, y, z;
 	int k;
