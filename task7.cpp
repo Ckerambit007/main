@@ -40,9 +40,8 @@ int main() {
 		cout << "\nВід'ємні числа стоять поряд";
 	}
 	else{
-		for (int k = first + 1; k < last; k++) {
+		for (int k = first + 1; k < last; k++)
 			m *= A[k];
-		}
 		cout << "\nk: ";
 		for (int i = first + 1; i < last; i++)
 			cout << A[i] << " ";
