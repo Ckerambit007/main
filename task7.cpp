@@ -9,7 +9,7 @@ int main() {
 	srand(time(NULL));
 	const int n = 20;
 	int A[n], first = -1, last = -1;
-	long m = 1;
+	long long m = 1;
 
 	cout << "A: ";
 	for (int i = 0; i < n; i++) {
