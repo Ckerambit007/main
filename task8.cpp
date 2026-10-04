@@ -34,7 +34,7 @@ int main() {
 			continue;
 		}
 
-		else if (!npos) {
+		else {
 			for (int l = n - 1; l >= 0; l--) {
 				if (A[i][l] > 0) {
 					last = l;
