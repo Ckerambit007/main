@@ -5,7 +5,7 @@ using namespace std;
 
 int main() {
 	const int n = 7;
-	int first, last, k = 0, sum = 0;
+	int first, last, summ = 0;
 	int A[n][n];
 	long long X[n];
 	srand(time(NULL));
@@ -28,9 +28,7 @@ int main() {
 		}
 
 		if (npos) {
-			X[k] = -1;
-			k++;
-			continue;
+			X[i] = -1;
 		}
 
 		else {
@@ -41,25 +39,16 @@ int main() {
 				}
 			}
 
-			if (last == first) {
-				X[k] = -1;
-				k++;
-				continue;
-			}
-
-			else if (last == first + 1) {
-				X[k] = -1;
-				k++;
-				continue;
+			if (last == first || last == first + 1){
+				X[i] = -1;
 			}
 
 			else {
 				for (int r = first + 1; r < last; r++) {
-					sum += abs(A[i][r]);
+					summ += abs(A[i][r]);
 				}
-				X[k] = sum;
-				sum = 0;
-				k++;
+				X[i] = summ;
+				summ = 0;
 			}
 		}
 	}
