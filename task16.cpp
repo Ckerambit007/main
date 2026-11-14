@@ -180,7 +180,7 @@ void editRecord(const char* filename) {
 	Auto_registry owners[100];
 	int count = 0;
 
-	ifstream checkFile(filename);
+	ifstream checkFile("Cars.txt");
 	if (!checkFile.is_open()) {
 		cout << "Помилка: не вдалося відкрити файл для редагування!" << endl;
 		return;
@@ -295,7 +295,7 @@ void printFilteredAndSorted(const char* filename, const char* targetMark) {
 	Auto_registry owners[100];
 	int count = 0;
 
-	ifstream fileIn(filename);
+	ifstream fileIn("Cars.txt");
 	if (!fileIn.is_open()) {
 		cout << "Помилка: не вдалося відкрити файл!\n";
 		return;
