@@ -15,7 +15,7 @@ void printRoutes(const Marshrut *arr, int size, int nomer) {
     cout << "Маршрут №" << arr[nomer].N << ", Відправлення: " << arr[nomer].Poch << ", Призначення: " << arr[nomer].Kin << endl;
 }
 
-int main() {
+int task14() {
     SetConsoleCP(CP_UTF8);
     SetConsoleOutputCP(CP_UTF8);
     const int k = 4;
@@ -43,12 +43,10 @@ int main() {
         if (strcmp(vved, zaps[i].Poch) == 0) {
             printRoutes(zaps, k, i);
             fine++;
-            continue;
         }
-        if (strcmp(vved, zaps[i].Kin) == 0) {
+        else if (strcmp(vved, zaps[i].Kin) == 0) {
             printRoutes(zaps, k, i);
             fine++;
-            continue;
         }
     }
     if (fine == 0)
