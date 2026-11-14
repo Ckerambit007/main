@@ -16,7 +16,7 @@ struct Auto_registry {
 };
 
 void createList(const char* filename) {
-	ofstream registry("Cars.txt", ios::out); // ios::out очищує файл при відкритті
+	ofstream registry("Cars.txt");
 	if (!registry.is_open()) {
 		cout << "Помилка: не вдалося відкрити файл!" << endl;
 		return;
@@ -29,7 +29,10 @@ void createList(const char* filename) {
 		Auto_registry owner;
 		owner.id = index;
 
-		cout << "\nВведення даних для запису №" << owner.id << endl;
+		if (index > 1)
+			cout << endl;
+
+		cout << "Введення даних для запису №" << owner.id << endl;
 		registry << owner.id << endl;
 
 		cout << "Введіть марку авто: ";
@@ -61,6 +64,8 @@ void createList(const char* filename) {
 		cin >> owner.houseNumber;
 		registry << owner.houseNumber << endl;
 
+		registry << endl;
+
 		index++;
 
 		cout << "Додати ще одного власника? (y/n): ";
@@ -70,7 +75,7 @@ void createList(const char* filename) {
 }
 
 void appendOwner(const char* filename) {
-	int count = 0;
+	int index = 0, count;
 	ifstream checkFile("Cars.txt");
 	if (checkFile.is_open()) {
 		Auto_registry temp;
@@ -79,10 +84,12 @@ void appendOwner(const char* filename) {
 			checkFile.getline(temp.initials, 32);
 			checkFile.getline(temp.street, 32);
 			checkFile >> temp.houseNumber;
-			count++;
+			index++;
 		}
 		checkFile.close();
 	}
+
+	count = index;
 
 	ofstream registry("Cars.txt", ios::app);
 	if (!registry.is_open()) {
@@ -95,9 +102,12 @@ void appendOwner(const char* filename) {
 
 	while (choice == 'y' || choice == 'Y') {
 		Auto_registry owner;
+
+		if (count > index)
+			cout << endl;
 		owner.id = count + 1;
 
-		cout << "\nВведення даних для запису №" << owner.id << endl;
+		cout << "Введення даних для запису №" << owner.id << endl;
 		registry << owner.id << endl;
 
 		cout << "Введіть марку авто: ";
@@ -128,6 +138,8 @@ void appendOwner(const char* filename) {
 		cout << "Введіть номер будинку: ";
 		cin >> owner.houseNumber;
 		registry << owner.houseNumber << endl;
+
+		registry << endl;
 
 		count++;
 
@@ -216,44 +228,50 @@ void editRecord(const char* filename) {
 			case 1:
 				cout << "Введіть нову марку: ";
 				cin >> owners[targetIndex].mark;
+				cout << "Поле успішно змінено!\n";
 				break;
 			case 2:
 				cout << "Введіть новий номер: ";
 				cin >> owners[targetIndex].number;
+				cout << "Поле успішно змінено!\n";
 				break;
 			case 3:
 				cout << "Введіть новий колір: ";
 				cin >> owners[targetIndex].color;
+				cout << "Поле успішно змінено!\n";
 				break;
 			case 4:
 				cout << "Введіть новий рік випуску: ";
 				cin >> owners[targetIndex].year;
+				cout << "Поле успішно змінено!\n";
 				break;
 			case 5:
 				cout << "Введіть нові ПІБ: ";
 				cin.ignore();
 				cin.getline(owners[targetIndex].initials, 32);
+				cout << "Поле успішно змінено!\n";
 				break;
 			case 6:
 				cout << "Введіть нову вулицю: ";
 				cin.ignore();
 				cin.getline(owners[targetIndex].street, 32);
+				cout << "Поле успішно змінено!\n";
 				break;
 			case 7:
 				cout << "Введіть новий номер будинку: ";
 				cin >> owners[targetIndex].houseNumber;
+				cout << "Поле успішно змінено!\n";
 				break;
 			default:
 				cout << "Невірний вибір пункту!\n";
 				break;
 			}
 
-			cout << "Поле успішно змінено!\n";
 			cout << "Бажаєте змінити ще щось у цього ж власника? (y/n): ";
 			cin >> editMore;
 		}
 
-		cout << "\nБажаєте відредагувати іншого власника? (y/n): ";
+		cout << "Бажаєте відредагувати іншого власника? (y/n): ";
 		cin >> continueEditing;
 	}
 
@@ -270,14 +288,13 @@ void editRecord(const char* filename) {
 	}
 	registry.close();
 
-	cout << "\nФайл успішно оновлено та збережено!\n";
+	cout << "Файл успішно оновлено та збережено!\n";
 }
 
 void printFilteredAndSorted(const char* filename, const char* targetMark) {
 	Auto_registry owners[100];
 	int count = 0;
 
-	// 1. Зчитуємо дані з файлу в масив
 	ifstream fileIn(filename);
 	if (!fileIn.is_open()) {
 		cout << "Помилка: не вдалося відкрити файл!\n";
@@ -313,7 +330,7 @@ void printFilteredAndSorted(const char* filename, const char* targetMark) {
 	}
 
 	if (filteredCount == 0) {
-		cout << "\nНе знайдено жодного власника для марки \"" << targetMark << "\", чий номер починається з '55'.\n";
+		cout << "Не знайдено жодного власника для марки " << targetMark << ", чий номер починається з '55'.";
 		return;
 	}
 
@@ -353,7 +370,7 @@ int main() {
 		cout << "2. Переглядати список власників автомобілів" << endl;
 		cout << "3. Внести зміни у запис про власника автомобіля" << endl;
 		cout << "4. Вивести за алфавітним порядком список власників заданої марки, номер яких починається з '55'" << endl;
-		cout << "Введіть номер запиту: ";
+		cout << "\nВведіть номер запиту: ";
 		cin >> k;
 
 		if (k == 1) {
