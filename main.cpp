@@ -1,4 +1,5 @@
 #include <iostream>
+#include <windows.h>
 using namespace std;
 
 
@@ -191,6 +192,9 @@ public:
 };
 
 int main() {
+    SetConsoleCP(CP_UTF8);
+    SetConsoleOutputCP(CP_UTF8);
+
     Dish owner1;
     Dish owner2(2, 3.4, 2500, true);
     Dish owner3(4);
