@@ -1,217 +1,123 @@
 #include <iostream>
 #include <windows.h>
+#include "Dish.h"
+#include "Table.h"
+#include "Waiter.h"
 using namespace std;
 
+void printByValue(Waiter w) {
+    w.print();
+}
 
-class Dish {
-private:
-    int id;
-    double price;
-    int calories;
-    bool vegeterian;
-public:
-    Dish() {
-        id = 1;
-        price = 0.0;
-        calories = 0;
-        vegeterian = false;
-        cout << "Dish: default constructor - " << "Id: " << id << ", " << "Price: " << price << ", " << "Calories: " << calories << ", " "Vegeterian: " << vegeterian << endl;
-    }
+void printByConstRef(const Waiter& w) {
+    w.print();
+}
 
-    Dish(int ownerid, double ownerprice, int ownercalories, bool ownervegeterian) {
-        if (ownerid > 0)
-            id = ownerid;
-        else
-            id = 1;
-
-        if (ownerprice > 0)
-            price = ownerprice;
-        else
-            price = 0.0;
-
-        if (ownercalories > 0 && ownercalories < 3000)
-            calories = ownercalories;
-        else
-            calories = 0;
-
-        vegeterian = ownervegeterian;
-
-        cout << "Dish: full constructor - " << "Id: " << id << ", " << "Price: " << price << ", " << "Calories: " << calories << ", " "Vegeterian: " << vegeterian << endl;
-    }
-    Dish(int ownerid) {
-        if (ownerid > 0)
-            id = ownerid;
-        else
-            id = 1;
-        price = 0.0;
-        calories = 0;
-        vegeterian = false;
-
-        cout << "Dish: Id constructor - " << "Id: " << id << ", " << "Price: " << price << ", " << "Calories: " << calories << ", " "Vegeterian: " << vegeterian << endl;
-    }
-
-    ~Dish() {
-        cout << "Dish: " << id << endl;
-    }
-
-    int getid() { return id; }
-    double getprice() { return price; }
-    int getcalories() { return calories; }
-    bool getvegeterian() { return vegeterian; }
-
-    void print() {
-        cout << "Id: " << id << ", " << "Price: " << price << ", " << "Calories: " << calories << ", " "Vegeterian: " << vegeterian << endl;
-    }
-};
-
-class Table {
-private:
-    int id;
-    int number;
-    int seats;
-    bool isFree;
-public:
-    Table() {
-        id = 1;
-        number = 1;
-        seats = 2;
-        isFree = true;
-        cout << "Table: default constructor - " << "Id: " << id << ", " << "Number: " << number << ", " << "Seats: " << seats << ", " << "IsFree: " << isFree << endl;
-    }
-
-    Table(int ownerid, int ownernumber, int ownerseats, bool ownerisFree) {
-        if (ownerid > 0)
-            id = ownerid;
-        else
-            id = 1;
-
-        if (ownernumber >= 1 && ownernumber <= 100)
-            number = ownernumber;
-        else
-            number = 1;
-
-        if (ownerseats >= 1 && ownerseats <= 12)
-            seats = ownerseats;
-        else
-            seats = 2;
-
-        isFree = ownerisFree;
-
-        cout << "Table: full constructor - " << "Id: " << id << ", " << "Number: " << number << ", " << "Seats: " << seats << ", " << "IsFree: " << isFree << endl;
-    }
-
-    Table(int ownerid) {
-        if (ownerid > 0)
-            id = ownerid;
-        else
-            id = 1;
-        number = 1;
-        seats = 2;
-        isFree = true;
-
-        cout << "Table: Id constructor -  " << "Id: " << id << ", " << "Number: " << number << ", " << "Seats: " << seats << ", " << "IsFree: " << isFree << endl;
-    }
-
-    ~Table() {
-        cout << "Table: " << id << endl;
-    }
-
-    int getid() { return id; }
-    int getnumber() { return number; }
-    int getseats() { return seats; }
-    bool getisFree() { return isFree; }
-
-    void print() {
-        cout << "Id: " << id << ", " << "Number: " << number << ", " << "Seats: " << seats << ", " << "IsFree: " << isFree << endl;
-    }
-};
-
-class Waiter {
-private:
-    int id;
-    int experience;
-    int tablesServed;
-    double rating;
-public:
-    Waiter() {
-        id = 1;
-        experience = 0;
-        tablesServed = 0;
-        rating = 0.0;
-        cout << "Waiter: default constructor - " << "Id: " << id << ", " << "Experience: " << experience << ", " << "TablesServed: " << tablesServed << ", " << "Rating: " << rating << endl;
-    }
-
-    Waiter(int ownerid, int ownerexperience, int ownertablesServed, double ownerrating) {
-        if (ownerid > 0)
-            id = ownerid;
-        else
-            id = 1;
-
-        if (ownerexperience >= 0 && ownerexperience <= 50)
-            experience = ownerexperience;
-        else
-            experience = 0;
-
-        if (ownertablesServed >= 0 && ownertablesServed <= 20)
-            tablesServed = ownertablesServed;
-        else
-            tablesServed = 0;
-
-        if (ownerrating >= 0.0 && ownerrating <= 5.0)
-            rating = ownerrating;
-        else
-            rating = 0.0;
-
-        cout << "Waiter: full constructor - " << "Id: " << id << ", " << "Experience: " << experience << ", " << "TablesServed: " << tablesServed << ", " << "Rating: " << rating << endl;
-    }
-
-    Waiter(int ownerid) {
-        if (ownerid > 0)
-            id = ownerid;
-        else
-            id = 1;
-        experience = 0;
-        tablesServed = 0;
-        rating = 0.0;
-
-        cout << "Waiter: Id constructor - " << "Id: " << id << ", " << "Experience: " << experience << ", " << "TablesServed: " << tablesServed << ", " << "Rating: " << rating << endl;
-    }
-
-    ~Waiter() {
-        cout << "Waiter: " << id << endl;
-    }
-
-    int getid() { return id; }
-    int getexperience() { return experience; }
-    int gettablesServed() { return tablesServed; }
-    double getrating() { return rating; }
-
-    void print() {
-        cout << "Id: " << id << ", " << "Experience: " << experience << ", " << "TablesServed: " << tablesServed << ", " << "Rating: " << rating << endl;
-    }
-};
+Waiter createobject() {
+    Waiter temp(10, 12, 8, 4.9);
+    return temp;
+}
 
 int main() {
     SetConsoleCP(CP_UTF8);
     SetConsoleOutputCP(CP_UTF8);
-
     Dish owner1;
     Dish owner2(2, 3.4, 2500, true);
     Dish owner3(4);
     Dish owner4(-1, 5.5, 3125, false);
+
+    owner1.getid();
+    owner2.getprice();
+    owner3.getid();
+    owner4.getcalories();
+    owner1.print();
+    owner2.print();
+    owner3.print();
+    owner4.print();
     cout << endl;
 
     Table customer1;
     Table customer2(6, 99, 10, false);
     Table customer3(9);
     Table customer4(5, 101, 13, true);
+
+    customer1.getid();
+    customer2.getnumber();
+    customer3.getid();
+    customer4.getseats();
+    customer1.print();
+    customer2.print();
+    customer3.print();
+    customer4.print();
     cout << endl;
 
     Waiter appraiser1;
     Waiter appraiser2(4, 45, 15, 4.5);
     Waiter appraiser3(5);
     Waiter appraiser4(7, 51, 23, 4.9);
+
+    appraiser1.getid();
+    appraiser2.getexperience();
+    appraiser3.gettablesServed();
+    appraiser4.getrating();
+    appraiser1.print();
+    appraiser2.print();
+    appraiser3.print();
+    appraiser4.print();
     cout << endl;
+
+    const Dish constDish(1, 250.5, 600, true);
+    constDish.getid();
+    constDish.getprice();
+    constDish.getcalories();
+    constDish.getvegeterian();
+    constDish.print();
+    constDish.hasSameId(owner1);
+    // constDish.setprice(300.0); // C2662: "void Dish::setprice(double)": невозможно преобразовать указатель "this" из "const Dish" в "Dish &"
+    cout << endl;
+
+    const Table constTable(6, 12, 4, true);
+    constTable.getid();
+    constTable.print();
+    constTable.hasSameId(customer1);
+    // constTable.setnumber(15); // C2662: "void Table::setnumber(int)": невозможно преобразовать указатель "this" из "const Table" в "Table &"
+    cout << endl;
+
+    const Waiter constWaiter(4, 10, 8, 4.7);
+    constWaiter.getid();
+    constWaiter.getexperience();
+    constWaiter.gettablesServed();
+    constWaiter.getrating();
+    constWaiter.getnote();
+    constWaiter.print();
+    constWaiter.hasSameId(appraiser1);
+    // constWaiter.setexperience(12); // C2662: "void Waiter::setexperience(int)": невозможно преобразовать указатель "this" из "const Waiter" в "Waiter &"
+    cout << endl;
+
+    Waiter Waitercopy{ appraiser2 };
+    Waitercopy.setNote(5);
+    appraiser2.print();
+    Waitercopy.print();
+    cout << endl;
+
+    Waiter* pointerappraiser = new Waiter(7, 13, 6, 4.8);
+    Waiter pointappraisercopy{ *pointerappraiser };
+    delete pointerappraiser;
+    pointappraisercopy.print();
+    cout << endl;
+
+    cout << "--- Передача за значенням ---" << endl;
+    printByValue(appraiser2);
+    cout << endl;
+
+    cout << "--- Передача за const посиланням ---" << endl;
+    printByConstRef(appraiser2);
+    cout << endl;
+
+    Waiter returnedWaiter = createobject();
+    returnedWaiter.print();
+    cout << endl;
+    // Замість того, щоб створювати локальний об'єкт temp, копіювати його у returnedWaiter і видаляти temp, компілятор одразу сконструював об'єкт у пам'яті змінної returnedWaiter, уникнувши зайвого копіювання.
 
     cout << "Початок" << endl;
 
