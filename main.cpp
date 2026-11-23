@@ -1,4 +1,5 @@
 #include <iostream>
+#include <windows.h>
 #include "Dish.h"
 #include "Table.h"
 #include "Waiter.h"
@@ -18,6 +19,8 @@ Waiter createobject() {
 }
 
 int main() {
+    SetConsoleCP(CP_UTF8);
+    SetConsoleOutputCP(CP_UTF8);
     Dish owner1;
     Dish owner2(2, 3.4, 2500, true);
     Dish owner3(4);
