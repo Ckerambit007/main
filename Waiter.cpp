@@ -26,7 +26,7 @@ Waiter::Waiter(const Waiter& other) :
 	rating(other.rating),
 	note(new int(*other.note))
 {
-	std::cout << "Waiter: Copy constructor - " << "Id: " << id << ", " << "Note: " << *note << std::endl;
+	std::cout << "Waiter: Copy constructor - " << "Id: " << id << ", " << "Experience: " << experience << ", " << "TablesServed: " << tablesServed << ", " << "Rating: " << rating << "Note: " << *note << std::endl;
 }
 
 Waiter::~Waiter() {
